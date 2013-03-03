@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Portal App</title>
+
+	<link rel="stylesheet" href="	settings.css" />
+</head>
+<body>
+	<header>
+		<h1>Portal App: list of all adresses</h1>
+	</header>
+	<section>
+
+		<ol>
+			<% list.each do |doc| %>
+				<li> <%= doc['key'] %> -> <%= doc['adress'] %></li>
+			<% end %>
+		</ol>
+	</section>
+	<footer>
+		Made by Mokrzu. 2013.
+	</footer>
+</body>
