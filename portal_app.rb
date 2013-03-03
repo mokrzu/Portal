@@ -39,14 +39,11 @@ get '/all' do
     @adresses = Array.new
 
     @all.each do |document|
-        puts document['key'].nil?
-        puts "^^^"
+
         unless document['key'].nil? or document['adress'].nil?
             @adresses << document
         end
     end
-
-    puts "??????????"
 
     erb :list, :locals => {:list => @adresses}
 end
