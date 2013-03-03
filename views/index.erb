@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Portal App</title>
+
+	<link rel="stylesheet" href="	settings.css" />
+</head>
+<body>
+	<header>
+		<h1>Portal App: insert url get shortcut;)</h1>
+	</header>
+	<section>
+
+		<form method="post">
+			<input type="text" value="" name="url" id="url" />
+			<input type="submit" value="shorten" id="submit" />
+		</form>
+
+	</section>
+	<section>
+		<% @short = shortcut(params[:url]) %>
+		<h4>Shortcut: <a href="<%= @short%>"> <%= @short %> </a></h4>
+	</section>
+	<footer>
+		Made by Mokrzu. 2013.
+	</footer>
+</body>
