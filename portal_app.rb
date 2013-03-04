@@ -4,14 +4,23 @@ require 'mongo'
 
 include Mongo
 
-@client = Mongo::Connection.new('localhost', 27017)
-@database = @client['portal']
+begin
+    @client = Mongo::Connection.new('localhost', 27017)
+    @database = @client['portal']
 
-set :collection, @database['urls']
+    set :collection, @database['urls']
+rescue => exception
+    if exception.class == Mongo::ConnectionFailure
+        set :db_server, :down
+    end
+else 
+    set :db_server, :running
+end
+
 
 helpers do
     
-    # Create and save in database shortcut for given adress
+    # Create and save in database, shortcut for given adress
     #
     # url - website adress
     #
@@ -41,8 +50,21 @@ helpers do
     end
 end
 
+# Filter: check if mongo server is running
+before do
+    next if request.path_info == "/error_page"
+    if settings.db_server == :down
+        redirect to("/error_page")
+    end
+end
+
+
 get '/' do
     erb :index
+end
+
+get '/error_page' do
+    erb :error_page
 end
 
 get '/all' do
