@@ -10,6 +10,17 @@ include Mongo
 set :collection, @database['urls']
 
 helpers do
+    
+    # Create and save in database shortcut for given adress
+    #
+    # url - website adress
+    #
+    # Examples:
+    #
+    #   shortcut("http://tomdoc.org/")
+    #   => "http://localhost:9393/FNQZJA"
+    #
+    # Return link with shortcut to given website
     def shortcut(url)
         if params[:url] and not params[:url].empty?
 
