@@ -29,7 +29,7 @@ helpers do
     #   shortcut("http://tomdoc.org/")
     #   => "http://localhost:9393/FNQZJA"
     #
-    # Return link with shortcut to given website
+    # Return link with shortcut
     def shortcut(url)
         if params[:url] and not params[:url].empty?
 
